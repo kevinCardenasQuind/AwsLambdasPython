@@ -4,7 +4,7 @@ class Sale:
         self.cliente_cedula = cliente_cedula
 
         if total <= 0:
-            raise ValueError('El total debe ser mayor que cero.')
+            raise ValueError('El total debe ser un valor mayor que cero.')
 
         self.total = total
     
