@@ -1,0 +1,88 @@
+service: Conection
+
+plugins:
+  - serverless-offline
+  - serverless-plugin-include-dependencies
+
+frameworkVersion: '3'
+
+package:
+  exclude:
+    - node_modules/**
+
+provider:
+  name: aws
+  runtime: python3.9
+  profile: curso-sls
+  stage: ${opt:stage, 'dev'}
+
+functions:
+  obtener_usuarios:
+    handler: Users.obtener_usuarios
+    events:
+      - http:
+          path: /usuarios
+          method: get
+
+  obtener_usuario_por_id:
+    handler: Users.obtener_usuario_por_id
+    events:
+      - http:
+          path: /usuarios/{id}
+          method: get
+  
+  editar_usuario_por_id:
+    handler: Users.editar_usuario_por_id
+    events:
+      - http:
+          path: /usuarios/{id}
+          method: put
+
+  eliminar_usuario_por_id:
+    handler: Users.eliminar_usuario_por_id
+    events:
+      - http:
+          path: /usuarios/{id}
+          method: delete
+
+  agregar_usuario:
+    handler: Users.agregar_usuario
+    events:
+      - http:
+          path: /usuarios
+          method: post
+
+  obtener_ventas:
+    handler: Sales.obtener_ventas
+    events:
+      - http:
+          path: /ventas
+          method: get
+
+  obtener_venta_por_id:
+    handler: Sales.obtener_venta_por_id
+    events:
+      - http:
+          path: /ventas/{venta_id}
+          method: get
+  
+  editar_venta_por_id:
+    handler: Sales.editar_venta_por_id
+    events:
+      - http:
+          path: /ventas/{venta_id}
+          method: put
+
+  eliminar_venta_por_id:
+    handler: Sales.eliminar_venta_por_id
+    events:
+      - http:
+          path: /ventas/{venta_id}
+          method: delete
+
+  agregar_venta:
+    handler: Sales.agregar_venta
+    events:
+      - http:
+          path: /ventas
+          method: post
